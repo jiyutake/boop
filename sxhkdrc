@@ -1,0 +1,69 @@
+alt + shift + {Left,Down,Up,Right}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
+
+alt + {_,shift + }Tab
+  bspc node -f {next.local,prev.local}
+
+ctrl + alt + {Left,Right}
+  bspc desktop -f {prev.local,next.local}
+
+super + @space
+  bspc node -t '~'{floating,tiled}
+
+super + Escape
+  pkill -USR1 -x sxhkd
+
+super + Return
+  st
+
+super + shift + c
+  bspc node -c
+
+super + alt + {Left,Right,Up,Down}
+  bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+
+super + alt + {e,r}
+  bspc {quit,wm -r}
+
+super + control + {Left,Right,Up,Down}
+  bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+
+super + d
+  eww o applauncher
+
+super + shift + d
+  rofi -show drun
+
+super + m
+  bspc desktop -l next
+
+super + s
+  flameshot gui
+
+super + shift + s
+  gscreenshot -sc
+
+super + p
+  picom
+
+super + F6
+  playerctl previous
+
+super + F7
+  playerctl play-pause
+
+super + F8
+  playerctl next
+
+super + shift + p
+  pkill picom
+
+super + {Tab,grave}
+  bspc {node,desktop} -f last
+
+super + {_,shift + }{1-8}
+  bspc {desktop -f,node -d} '^{1-8}'
+
+super + {t,f}
+  bspc node -t {tiled,fullscreen}
+

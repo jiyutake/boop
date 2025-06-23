@@ -1,0 +1,39 @@
+#!/bin/sh
+#bspwmrc
+
+pgrep -x sxhkd > /dev/null || sxhkd -c $HOME/cfg/bspwm/sxhkdrc &
+xsetroot -cursor_name miku-cursor-linux
+#xsetroot -gray
+bspc monitor -d 1 2 3
+
+sh -c $HOME/cfg/bspwm/audio.sh &
+sh -c $HOME/layout.sh &
+feh --nofehbg --bg-fill ~/img/veri.png &
+export _JAVA_AWT_WM_NONREPARENTING=1
+#bspc rule feh state=floating
+
+if [[ pgrep -x st == "" ]] then st & fi
+if [[ pgrep -x eww = "" ]]; then eww o bar & fi 
+xclip &
+#picom &
+pipewire &
+pipewire-pulse&
+wireplumber &
+#/config/eww/bin/womp.sh start --no-picom &
+
+bspc rule -a st follow=true focus=true
+bspc rule -a eww floating=true
+bspc rule -a gscreenshot floating=true
+bspc rule -a feh floating=true focus=true
+
+bspc config left_padding 
+bspc config window_gap 15
+bspc config split_ratio 0.50
+
+bspc config border_width 0
+
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config focus_follows_pointer true
+
+pkill borders ; borders &
