@@ -1,0 +1,39 @@
+(defwindow bar
+    :monitor 1
+    :stacking "bg"
+    :windowtype "dock"
+    :wm-ignore false
+    :geometry (geometry
+        :x "20px"
+        :y "-20px"
+        :width "360px"
+        :height "60px"
+        :anchor "bottom left"
+    )
+  (barstuff)
+)
+
+(defvar dockIsOpen "")
+(defwidget barstuff []
+    (centerbox :orientation "horizontal"
+        (button :onclick "eww open --toggle")
+        (label :text "ws") ;; do this later please ^_^
+        (box :orientation "horizontal"
+            (box :class "dock"
+                (box (label :text "<"))
+                (eventbox
+                    :onhover "eww update dockIsOpen=true"
+                    :onhoverlost "eww update dockIsOpen=false"
+                    (revealer
+                        :transition "slideleft"
+                        :duration "200ms"
+                        (systray :spacing "5"
+                            :orientation "horizontal"
+                            :icon-size "10"))))
+            (box :class "clock" (label :text time)
+            )
+        )
+    )
+)
+
+(defpoll time :interval "1s" "date +%H:%M")
