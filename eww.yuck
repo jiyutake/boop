@@ -1,3 +1,9 @@
+;; Hi
+;; This is the main EWW file.
+;; Make sure any extra files are imported properly here
+;; otherwise, some stuff might not work (specially variables)
+;; Oh and the CSS. I'll worry about that later.
+
 (defwindow bar
     :monitor 1
     :stacking "bg"
@@ -8,32 +14,26 @@
         :y "-20px"
         :width "360px"
         :height "60px"
-        :anchor "bottom left"
-    )
-  (barstuff)
-)
+        :anchor "bottom left")
+    (bar_widget))
 
-(defvar dockIsOpen "")
-(defwidget barstuff []
+(defvar dock_state_open "")
+(defwidget bar_widget []
     (centerbox :orientation "horizontal"
         (button :onclick "eww open --toggle")
-        (label :text "ws") ;; do this later please ^_^
+        (workspaces) ;; do this later please ^_^
         (box :orientation "horizontal"
             (box :class "dock"
                 (box (label :text "<"))
                 (eventbox
-                    :onhover "eww update dockIsOpen=true"
-                    :onhoverlost "eww update dockIsOpen=false"
+                    :onhover "eww update dock_state_open=true"
+                    :onhoverlost "eww update dock_state_open=false"
                     (revealer
                         :transition "slideleft"
                         :duration "200ms"
                         (systray :spacing "5"
                             :orientation "horizontal"
                             :icon-size "10"))))
-            (box :class "clock" (label :text time)
-            )
-        )
-    )
-)
+            (box :class "clock" (label :text time)))))
 
 (defpoll time :interval "1s" "date +%H:%M")

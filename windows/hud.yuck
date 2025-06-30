@@ -1,0 +1,21 @@
+;; Variables
+(defvar battery_label "${EWW_BATTERY}" ? "no battery")
+(defpoll time :interval "1s" "date +%H:%M")
+
+;; Window
+(defwindow hud
+    :monitor 1
+    :stacking "bg"
+    :windowtype "desktop"
+    :wm-ignore false
+    :geometry (geometry
+        :x "-20px"
+        :y "-20px"
+        :width "360px"
+        :height "60px"
+        :anchor "bottom right")
+  (box :orientation "vertical"
+    :class "padding"
+    (label :text battery_label)
+    (label :text time))
+)
